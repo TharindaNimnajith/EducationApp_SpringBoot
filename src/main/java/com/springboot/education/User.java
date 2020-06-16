@@ -7,42 +7,46 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-    private int id;
+    private String userId;
     private String firstName;
     private String lastName;
     private String position;
+    private String contactNo;
+    private String nic;
     private String email;
     private String password;
-    private String contactNo;
 
     public User() {
-        id = 0;
+        userId = "";
         firstName = "";
         lastName = "";
         position = "";
+        contactNo = "";
+        nic = "";
         email = "";
         password = "";
-        contactNo = "";
     }
 
-    public User(int id, String firstName, String lastName, String position, String email, String password, String contactNo) {
-        this.id = id;
+    public User(String userId, String firstName, String lastName, String position, String contactNo,
+                String nic, String email, String password) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
+        this.contactNo = contactNo;
+        this.nic = nic;
         this.email = email;
         this.password = password;
-        this.contactNo = contactNo;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -69,6 +73,22 @@ public class User {
         this.position = position;
     }
 
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -83,13 +103,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
     }
 }

@@ -4,82 +4,117 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Lecture {
-    private int id;
-    private String lesson;
-    private String subject;
-    private String lecturer;
-    private String location;
-    private Date date;
+    private String lectureId;
+    private String lessonName;
+    private String lessonDescription;
+    private String subjectCode;
+    private String lecturerId;
+    private String locationCode;
+    private LocalDate date;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     public Lecture() {
-        id = 0;
-        lesson = "";
-        subject = "";
-        lecturer = "";
-        location = "";
-        date = new Date();
+        lectureId = "";
+        lessonName = "";
+        lessonDescription = "";
+        subjectCode = "";
+        lecturerId = "";
+        locationCode = "";
+        date = LocalDate.now();
+        startTime = LocalTime.now();
+        endTime = LocalTime.now();
     }
 
-    public Lecture(int id, String lesson, String subject, String lecturer, String location, Date date) {
-        this.id = id;
-        this.lesson = lesson;
-        this.subject = subject;
-        this.lecturer = lecturer;
-        this.location = location;
+    public Lecture(String lectureId, String lessonName, String lessonDescription, String subjectCode,
+                   String lecturerId, String locationCode, LocalDate date, LocalTime startTime, LocalTime endTime) {
+        this.lectureId = lectureId;
+        this.lessonName = lessonName;
+        this.lessonDescription = lessonDescription;
+        this.subjectCode = subjectCode;
+        this.lecturerId = lecturerId;
+        this.locationCode = locationCode;
         this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
+    public String getLectureId() {
+        return lectureId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLectureId(String lectureId) {
+        this.lectureId = lectureId;
     }
 
-    public String getLesson() {
-        return lesson;
+    public String getLessonName() {
+        return lessonName;
     }
 
-    public void setLesson(String lesson) {
-        this.lesson = lesson;
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getLessonDescription() {
+        return lessonDescription;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setLessonDescription(String lessonDescription) {
+        this.lessonDescription = lessonDescription;
     }
 
-    public String getLecturer() {
-        return lecturer;
+    public String getSubjectCode() {
+        return subjectCode;
     }
 
-    public void setLecturer(String lecturer) {
-        this.lecturer = lecturer;
+    public void setSubjectCode(String subjectCode) {
+        this.subjectCode = subjectCode;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLecturerId() {
+        return lecturerId;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLecturerId(String lecturerId) {
+        this.lecturerId = lecturerId;
     }
 
-    public Date getDate() {
+    public String getLocationCode() {
+        return locationCode;
+    }
+
+    public void setLocationCode(String locationCode) {
+        this.locationCode = locationCode;
+    }
+
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
 }
