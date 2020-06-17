@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {proxy} from '../../conf'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import './user-form-edit-styles.sass'
-import {proxy} from '../../conf'
 
-class EditUser extends Component {
+class EditLecture extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -125,4 +124,4 @@ class EditUser extends Component {
   }
 }
 
-export default EditUser
+export default EditLecture

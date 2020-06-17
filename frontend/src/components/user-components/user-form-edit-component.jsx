@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {proxy} from '../../conf'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import {proxy} from '../../conf'
 
-class EditLecture extends Component {
+class EditUser extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -124,4 +124,4 @@ class EditLecture extends Component {
   }
 }
 
-export default EditLecture
+export default EditUser

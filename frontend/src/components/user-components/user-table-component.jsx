@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {proxy} from '../../conf'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
-import './user-table-styles.sass'
-import {proxy} from '../../conf'
 
 class UserList extends Component {
   constructor(props) {
