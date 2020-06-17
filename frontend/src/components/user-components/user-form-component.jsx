@@ -91,6 +91,11 @@ class AddUser extends Component {
   render() {
     return (
       <div>
+        <Button variant={'primary'}
+                href={'/userList'}
+        >
+          User List
+        </Button>
         <Form onSubmit={this.onSubmit}>
           <Form.Row>
             <Form.Group as={Col}

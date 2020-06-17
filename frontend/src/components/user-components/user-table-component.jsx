@@ -46,6 +46,11 @@ class UserList extends Component {
   render() {
     return (
       <div>
+        <Button variant={'primary'}
+                href={'/addUser'}
+        >
+          Add User
+        </Button>
         <Table responsive striped bordered hover variant='dark'>
           <thead>
           <tr>
