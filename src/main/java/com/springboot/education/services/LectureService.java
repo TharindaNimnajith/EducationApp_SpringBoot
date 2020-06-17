@@ -1,5 +1,7 @@
-package com.springboot.education;
+package com.springboot.education.services;
 
+import com.springboot.education.models.Lecture;
+import com.springboot.education.repositories.LectureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

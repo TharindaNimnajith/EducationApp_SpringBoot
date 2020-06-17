@@ -1,5 +1,7 @@
-package com.springboot.education;
+package com.springboot.education.controllers;
 
+import com.springboot.education.models.Lecture;
+import com.springboot.education.services.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

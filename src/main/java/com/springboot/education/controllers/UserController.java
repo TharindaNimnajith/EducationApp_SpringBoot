@@ -1,5 +1,7 @@
-package com.springboot.education;
+package com.springboot.education.controllers;
 
+import com.springboot.education.models.User;
+import com.springboot.education.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

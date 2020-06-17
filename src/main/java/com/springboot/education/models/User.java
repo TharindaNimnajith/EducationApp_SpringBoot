@@ -1,4 +1,4 @@
-package com.springboot.education;
+package com.springboot.education.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
