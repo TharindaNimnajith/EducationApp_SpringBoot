@@ -9,25 +9,38 @@ class EditUser extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      userId: '',
       firstName: '',
       lastName: '',
-      phoneNo: '',
+      position: '',
+      contactNo: '',
+      nic: '',
       email: '',
-      nic: ''
+      password: ''
     }
   }
 
   componentDidMount() {
-    axios.get(`${proxy}user/${this.props.match.params.id}`).then(res =>
-      this.setState({
-        firstName: res.data.firstName,
-        lastName: res.data.lastName,
-        phoneNo: res.data.phoneNo,
-        email: res.data.email,
-        nic: res.data.nic
-      })).catch(error =>
+    axios.get(`${proxy}users/${this.props.match.params.id}`)
+      .then(res =>
+        this.setState({
+          userId: res.data.userId,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          position: res.data.position,
+          contactNo: res.data.contactNo,
+          nic: res.data.nic,
+          email: res.data.email,
+          password: res.data.password
+        })).catch(error =>
       console.log(error)
     );
+  }
+
+  onChangeUserId = event => {
+    this.setState({
+      userId: event.target.value
+    })
   }
 
   onChangeFirstName = event => {
@@ -42,15 +55,15 @@ class EditUser extends Component {
     })
   }
 
-  onChangePhoneNo = event => {
+  onChangePosition = event => {
     this.setState({
-      phoneNo: event.target.value
+      position: event.target.value
     })
   }
 
-  onChangeEmail = event => {
+  onChangeContactNo = event => {
     this.setState({
-      email: event.target.value
+      contactNo: event.target.value
     })
   }
 
@@ -60,18 +73,34 @@ class EditUser extends Component {
     })
   }
 
+  onChangeEmail = event => {
+    this.setState({
+      email: event.target.value
+    })
+  }
+
+  onChangePassword = event => {
+    this.setState({
+      password: event.target.value
+    })
+  }
+
   onSubmit = event => {
     event.preventDefault()
     const user = {
+      userId: this.state.userId,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      phoneNo: this.state.phoneNo,
+      position: this.state.position,
+      contactNo: this.state.contactNo,
+      nic: this.state.nic,
       email: this.state.email,
-      nic: this.state.nic
+      password: this.state.password
     }
-    axios.put(`${proxy}user/${this.props.match.params.id}`, user).then(res => {
-      window.location = '/userList'
-    }).catch(error => {
+    axios.put(`${proxy}users/${this.props.match.params.id}`, user)
+      .then(() => {
+        window.location = '/userList'
+      }).catch(error => {
       console.log(error)
     })
   }
@@ -81,41 +110,95 @@ class EditUser extends Component {
       <div>
         <Form onSubmit={this.onSubmit}>
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridFirstName'>
+            <Form.Group as={Col}
+                        controlId='formGridUserId'>
+              <Form.Label>User ID</Form.Label>
+              <Form.Control placeholder='Enter User ID'
+                            type='text'
+                            value={this.state.userId}
+                            onChange={this.onChangeUserId}
+                            required/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col}
+                        controlId='formGridFirstName'>
               <Form.Label>First Name</Form.Label>
-              <Form.Control placeholder='Enter First Name' type='text' value={this.state.firstName}
-                            onChange={this.onChangeFirstName} required/>
+              <Form.Control placeholder='Enter First Name'
+                            type='text'
+                            value={this.state.firstName}
+                            onChange={this.onChangeFirstName}
+                            required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridLastName'>
+            <Form.Group as={Col}
+                        controlId='formGridLastName'>
               <Form.Label>Last Name</Form.Label>
-              <Form.Control placeholder='Enter Last Name' type='text' value={this.state.lastName}
-                            onChange={this.onChangeLastName} required/>
+              <Form.Control placeholder='Enter Last Name'
+                            type='text'
+                            value={this.state.lastName}
+                            onChange={this.onChangeLastName}
+                            required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridPhoneNo'>
-              <Form.Label>Phone No</Form.Label>
-              <Form.Control placeholder='Enter Phone No' type='text' value={this.state.phoneNo}
-                            onChange={this.onChangePhoneNo} required/>
+            <Form.Group as={Col}
+                        controlId='formGridPosition'>
+              <Form.Label>Position</Form.Label>
+              <Form.Control placeholder='Enter Position'
+                            type='text'
+                            value={this.state.position}
+                            onChange={this.onChangePosition}
+                            required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridEmail'>
-              <Form.Label>Email</Form.Label>
-              <Form.Control placeholder='Enter Email' type='email' value={this.state.email}
-                            onChange={this.onChangeEmail} required/>
+            <Form.Group as={Col}
+                        controlId='formGridContactNo'>
+              <Form.Label>Contact No</Form.Label>
+              <Form.Control placeholder='Enter Contact No'
+                            type='text'
+                            value={this.state.contactNo}
+                            onChange={this.onChangeContactNo}
+                            required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            <Form.Group as={Col} controlId='formGridNIC'>
+            <Form.Group as={Col}
+                        controlId='formGridNIC'>
               <Form.Label>NIC</Form.Label>
-              <Form.Control placeholder='Enter NIC' type='text' value={this.state.nic}
-                            onChange={this.onChangeNIC} required/>
+              <Form.Control placeholder='Enter NIC'
+                            type='text'
+                            value={this.state.nic}
+                            onChange={this.onChangeNIC}
+                            required/>
             </Form.Group>
           </Form.Row>
-          <Button variant='primary' type='submit'>
+          <Form.Row>
+            <Form.Group as={Col}
+                        controlId='formGridEmail'>
+              <Form.Label>Email</Form.Label>
+              <Form.Control placeholder='Enter Email'
+                            type='email'
+                            value={this.state.email}
+                            onChange={this.onChangeEmail}
+                            required/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col}
+                        controlId='formGridPassword'>
+              <Form.Label>Password</Form.Label>
+              <Form.Control placeholder='Enter Password'
+                            type='password'
+                            value={this.state.password}
+                            onChange={this.onChangePassword}
+                            required/>
+            </Form.Group>
+          </Form.Row>
+          <Button variant='primary'
+                  type='submit'>
             Edit
           </Button>
         </Form>
