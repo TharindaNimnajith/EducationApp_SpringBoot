@@ -9,80 +9,88 @@ class AddLecture extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userId: '',
-      firstName: '',
-      lastName: '',
-      position: '',
-      contactNo: '',
-      nic: '',
-      email: '',
-      password: ''
+      lectureId: '',
+      lessonName: '',
+      lessonDescription: '',
+      subjectCode: '',
+      lecturerId: '',
+      locationCode: '',
+      date: null,
+      startTime: null,
+      endTime: null
     }
   }
 
-  onChangeUserId = event => {
+  onChangeLectureId = event => {
     this.setState({
-      userId: event.target.value
+      lectureId: event.target.value
     })
   }
 
-  onChangeFirstName = event => {
+  onChangeLessonName = event => {
     this.setState({
-      firstName: event.target.value
+      lessonName: event.target.value
     })
   }
 
-  onChangeLastName = event => {
+  onChangeLessonDescription = event => {
     this.setState({
-      lastName: event.target.value
+      lessonDescription: event.target.value
     })
   }
 
-  onChangePosition = event => {
+  onChangeSubjectCode = event => {
     this.setState({
-      position: event.target.value
+      subjectCode: event.target.value
     })
   }
 
-  onChangeContactNo = event => {
+  onChangeLecturerId = event => {
     this.setState({
-      contactNo: event.target.value
+      lecturerId: event.target.value
     })
   }
 
-  onChangeNIC = event => {
+  onChangeLocationCode = event => {
     this.setState({
-      nic: event.target.value
+      locationCode: event.target.value
     })
   }
 
-  onChangeEmail = event => {
+  onChangeDate = event => {
     this.setState({
-      email: event.target.value
+      date: event.target.value
     })
   }
 
-  onChangePassword = event => {
+  onChangeStartTime = event => {
     this.setState({
-      password: event.target.value
+      startTime: event.target.value
+    })
+  }
+
+  onChangeEndTime = event => {
+    this.setState({
+      endTime: event.target.value
     })
   }
 
   onSubmit = event => {
     event.preventDefault()
-    const user = {
-      userId: this.state.userId,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      position: this.state.position,
-      contactNo: this.state.contactNo,
-      nic: this.state.nic,
-      email: this.state.email,
-      password: this.state.password
+    const lecture = {
+      lectureId: this.state.lectureId,
+      lessonName: this.state.lessonName,
+      lessonDescription: this.state.lessonDescription,
+      subjectCode: this.state.subjectCode,
+      lecturerId: this.state.lecturerId,
+      locationCode: this.state.locationCode,
+      date: this.state.date,
+      startTime: this.state.startTime,
+      endTime: this.state.endTime
     }
-    axios.post(`${proxy}users`, user)
+    axios.post(`${proxy}lectures`, lecture)
       .then(() => {
-        window.location = '/userList'
+        window.location = '/lectureList'
       }).catch(error => {
       console.log(error)
     })
@@ -92,96 +100,112 @@ class AddLecture extends Component {
     return (
       <div>
         <Button variant={'primary'}
-                href={'/userList'}
+                href={'/'}
         >
-          User List
+          Home
+        </Button>
+        <Button variant={'primary'}
+                href={'/lectureList'}
+        >
+          Lecture List
         </Button>
         <Form onSubmit={this.onSubmit}>
           <Form.Row>
             <Form.Group as={Col}
-                        controlId='formGridUserId'>
-              <Form.Label>User ID</Form.Label>
-              <Form.Control placeholder='Enter User ID'
+                        controlId='formGridLectureId'>
+              <Form.Label>Lecture ID</Form.Label>
+              <Form.Control placeholder='Enter Lecture ID'
                             type='text'
-                            value={this.state.userId}
-                            onChange={this.onChangeUserId}
+                            value={this.state.lectureId}
+                            onChange={this.onChangeLectureId}
                             required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
-                        controlId='formGridFirstName'>
-              <Form.Label>First Name</Form.Label>
-              <Form.Control placeholder='Enter First Name'
+                        controlId='formGridLessonName'>
+              <Form.Label>Lesson Name</Form.Label>
+              <Form.Control placeholder='Enter Lesson Name'
                             type='text'
-                            value={this.state.firstName}
-                            onChange={this.onChangeFirstName}
+                            value={this.state.lessonName}
+                            onChange={this.onChangeLessonName}
                             required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
-                        controlId='formGridLastName'>
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control placeholder='Enter Last Name'
+                        controlId='formGridLessonDescription'>
+              <Form.Label>Lesson Description</Form.Label>
+              <Form.Control placeholder='Enter Lesson Description'
                             type='text'
-                            value={this.state.lastName}
-                            onChange={this.onChangeLastName}
+                            value={this.state.lessonDescription}
+                            onChange={this.onChangeLessonDescription}
                             required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
-                        controlId='formGridPosition'>
-              <Form.Label>Position</Form.Label>
-              <Form.Control placeholder='Enter Position'
+                        controlId='formGridSubjectCode'>
+              <Form.Label>Subject Code</Form.Label>
+              <Form.Control placeholder='Enter Subject Code'
                             type='text'
-                            value={this.state.position}
-                            onChange={this.onChangePosition}
+                            value={this.state.subjectCode}
+                            onChange={this.onChangeSubjectCode}
                             required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
-                        controlId='formGridContactNo'>
-              <Form.Label>Contact No</Form.Label>
-              <Form.Control placeholder='Enter Contact No'
+                        controlId='formGridLecturerId'>
+              <Form.Label>Lecturer ID</Form.Label>
+              <Form.Control placeholder='Enter Lecturer ID'
                             type='text'
-                            value={this.state.contactNo}
-                            onChange={this.onChangeContactNo}
+                            value={this.state.lecturerId}
+                            onChange={this.onChangeLecturerId}
                             required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
-                        controlId='formGridNIC'>
-              <Form.Label>NIC</Form.Label>
-              <Form.Control placeholder='Enter NIC'
+                        controlId='formGridLocationCode'>
+              <Form.Label>Location Code</Form.Label>
+              <Form.Control placeholder='Enter Location Code'
                             type='text'
-                            value={this.state.nic}
-                            onChange={this.onChangeNIC}
+                            value={this.state.locationCode}
+                            onChange={this.onChangeLocationCode}
                             required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
-                        controlId='formGridEmail'>
-              <Form.Label>Email</Form.Label>
-              <Form.Control placeholder='Enter Email'
-                            type='email'
-                            value={this.state.email}
-                            onChange={this.onChangeEmail}
+                        controlId='formGridDate'>
+              <Form.Label>Date</Form.Label>
+              <Form.Control placeholder='Enter Date'
+                            type='date'
+                            value={this.state.date}
+                            onChange={this.onChangeDate}
                             required/>
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
-                        controlId='formGridPassword'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control placeholder='Enter Password'
-                            type='password'
-                            value={this.state.password}
-                            onChange={this.onChangePassword}
+                        controlId='formGridStartTime'>
+              <Form.Label>Start Time</Form.Label>
+              <Form.Control placeholder='Enter Start Time'
+                            type='time'
+                            value={this.state.startTime}
+                            onChange={this.onChangeStartTime}
+                            required/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col}
+                        controlId='formGridEndTime'>
+              <Form.Label>End Time</Form.Label>
+              <Form.Control placeholder='Enter End Time'
+                            type='time'
+                            value={this.state.endTime}
+                            onChange={this.onChangeEndTime}
                             required/>
             </Form.Group>
           </Form.Row>

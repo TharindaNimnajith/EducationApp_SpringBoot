@@ -92,6 +92,11 @@ class AddUser extends Component {
     return (
       <div>
         <Button variant={'primary'}
+                href={'/'}
+        >
+          Home
+        </Button>
+        <Button variant={'primary'}
                 href={'/userList'}
         >
           User List

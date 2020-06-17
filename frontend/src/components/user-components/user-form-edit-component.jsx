@@ -97,7 +97,7 @@ class EditUser extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    axios.put(`${proxy}users/${this.props.match.params.id}`, user)
+    axios.post(`${proxy}users`, user)
       .then(() => {
         window.location = '/userList'
       }).catch(error => {
@@ -108,6 +108,11 @@ class EditUser extends Component {
   render() {
     return (
       <div>
+        <Button variant={'primary'}
+                href={'/'}
+        >
+          Home
+        </Button>
         <Button variant={'primary'}
                 href={'/userList'}
         >

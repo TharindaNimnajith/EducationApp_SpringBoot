@@ -8,38 +8,39 @@ class LectureList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userId: '',
-      firstName: '',
-      lastName: '',
-      position: '',
-      contactNo: '',
-      nic: '',
-      email: '',
-      password: '',
-      users: []
+      lectureId: '',
+      lessonName: '',
+      lessonDescription: '',
+      subjectCode: '',
+      lecturerId: '',
+      locationCode: '',
+      date: null,
+      startTime: null,
+      endTime: null,
+      lectures: []
     }
   }
 
   componentDidMount() {
-    axios.get(`${proxy}users`)
+    axios.get(`${proxy}lectures`)
       .then(res => {
         this.setState({
-          users: res.data
+          lectures: res.data
         })
       }).catch(error => {
       console.log(error)
     })
   }
 
-  deleteUser = userId => {
-    axios.delete(`${proxy}users/${userId}`)
+  deleteLecture = lectureId => {
+    axios.delete(`${proxy}lectures/${lectureId}`)
       .then(res => {
         console.log(res.data)
       }).catch(error => {
       console.log(error)
     })
     this.setState({
-      users: this.state.users.filter(user => user.userId !== userId)
+      lectures: this.state.lectures.filter(lecture => lecture.lectureId !== lectureId)
     })
   }
 
@@ -47,47 +48,54 @@ class LectureList extends Component {
     return (
       <div>
         <Button variant={'primary'}
-                href={'/addUser'}
+                href={'/'}
         >
-          Add User
+          Home
+        </Button>
+        <Button variant={'primary'}
+                href={'/addLecture'}
+        >
+          Add Lecture
         </Button>
         <Table responsive striped bordered hover variant='dark'>
           <thead>
           <tr>
-            <th>User ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Position</th>
-            <th>Contact No</th>
-            <th>NIC</th>
-            <th>Email</th>
-            <th>Password</th>
+            <th>Lecture ID</th>
+            <th>Lesson Name</th>
+            <th>Lesson Description</th>
+            <th>Subject Code</th>
+            <th>Lecturer ID</th>
+            <th>Location Code</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
             <th/>
             <th/>
           </tr>
           </thead>
           <tbody>
           {
-            this.state.users.map(user => (
-              <tr key={user.userId}>
-                <td>{user.userId}</td>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
-                <td>{user.position}</td>
-                <td>{user.contactNo}</td>
-                <td>{user.nic}</td>
-                <td>{user.email}</td>
-                <td>{user.password}</td>
+            this.state.lectures.map(lecture => (
+              <tr key={lecture.lectureId}>
+                <td>{lecture.lectureId}</td>
+                <td>{lecture.lessonName}</td>
+                <td>{lecture.lessonDescription}</td>
+                <td>{lecture.subjectCode}</td>
+                <td>{lecture.lecturerId}</td>
+                <td>{lecture.locationCode}</td>
+                <td>{lecture.date}</td>
+                <td>{lecture.startTime}</td>
+                <td>{lecture.endTime}</td>
                 <td>
                   <Button variant={'primary'}
-                          href={'/editUser/' + user.userId}
+                          href={'/editLecture/' + lecture.lectureId}
                   >
                     Edit
                   </Button>
                 </td>
                 <td>
                   <Button variant={'danger'}
-                          onClick={() => this.deleteUser(user.userId)}
+                          onClick={() => this.deleteLecture(lecture.lectureId)}
                   >
                     Delete
                   </Button>
