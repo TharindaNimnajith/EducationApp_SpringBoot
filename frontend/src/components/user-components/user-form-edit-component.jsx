@@ -37,12 +37,6 @@ class EditUser extends Component {
     );
   }
 
-  onChangeUserId = event => {
-    this.setState({
-      userId: event.target.value
-    })
-  }
-
   onChangeFirstName = event => {
     this.setState({
       firstName: event.target.value
@@ -97,7 +91,7 @@ class EditUser extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    axios.post(`${proxy}users`, user)
+    axios.put(`${proxy}users/${this.props.match.params.id}`, user)
       .then(() => {
         window.location = '/userList'
       }).catch(error => {
@@ -126,8 +120,7 @@ class EditUser extends Component {
               <Form.Control placeholder='Enter User ID'
                             type='text'
                             value={this.state.userId}
-                            onChange={this.onChangeUserId}
-                            required/>
+                            disabled/>
             </Form.Group>
           </Form.Row>
           <Form.Row>

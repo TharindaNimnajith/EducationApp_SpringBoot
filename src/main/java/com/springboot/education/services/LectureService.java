@@ -16,11 +16,11 @@ public class LectureService {
         lectureRepository.save(lecture);
     }
 
-    public void deleteLecture(String lectureId) {
+    public void deleteLecture(int lectureId) {
         lectureRepository.deleteById(lectureId);
     }
 
-    public Lecture getLecture(String lectureId) {
+    public Lecture getLecture(int lectureId) {
         return lectureRepository.findById(lectureId).get();
     }
 

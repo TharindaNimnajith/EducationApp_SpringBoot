@@ -9,7 +9,6 @@ class AddUser extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userId: '',
       firstName: '',
       lastName: '',
       position: '',
@@ -18,12 +17,6 @@ class AddUser extends Component {
       email: '',
       password: ''
     }
-  }
-
-  onChangeUserId = event => {
-    this.setState({
-      userId: event.target.value
-    })
   }
 
   onChangeFirstName = event => {
@@ -71,7 +64,6 @@ class AddUser extends Component {
   onSubmit = event => {
     event.preventDefault()
     const user = {
-      userId: this.state.userId,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       position: this.state.position,
@@ -102,17 +94,6 @@ class AddUser extends Component {
           User List
         </Button>
         <Form onSubmit={this.onSubmit}>
-          <Form.Row>
-            <Form.Group as={Col}
-                        controlId='formGridUserId'>
-              <Form.Label>User ID</Form.Label>
-              <Form.Control placeholder='Enter User ID'
-                            type='text'
-                            value={this.state.userId}
-                            onChange={this.onChangeUserId}
-                            required/>
-            </Form.Group>
-          </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
                         controlId='formGridFirstName'>

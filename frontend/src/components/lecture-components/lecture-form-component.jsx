@@ -9,7 +9,6 @@ class AddLecture extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      lectureId: '',
       lessonName: '',
       lessonDescription: '',
       subjectCode: '',
@@ -19,12 +18,6 @@ class AddLecture extends Component {
       startTime: null,
       endTime: null
     }
-  }
-
-  onChangeLectureId = event => {
-    this.setState({
-      lectureId: event.target.value
-    })
   }
 
   onChangeLessonName = event => {
@@ -78,7 +71,6 @@ class AddLecture extends Component {
   onSubmit = event => {
     event.preventDefault()
     const lecture = {
-      lectureId: this.state.lectureId,
       lessonName: this.state.lessonName,
       lessonDescription: this.state.lessonDescription,
       subjectCode: this.state.subjectCode,
@@ -110,17 +102,6 @@ class AddLecture extends Component {
           Lecture List
         </Button>
         <Form onSubmit={this.onSubmit}>
-          <Form.Row>
-            <Form.Group as={Col}
-                        controlId='formGridLectureId'>
-              <Form.Label>Lecture ID</Form.Label>
-              <Form.Control placeholder='Enter Lecture ID'
-                            type='text'
-                            value={this.state.lectureId}
-                            onChange={this.onChangeLectureId}
-                            required/>
-            </Form.Group>
-          </Form.Row>
           <Form.Row>
             <Form.Group as={Col}
                         controlId='formGridLessonName'>

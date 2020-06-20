@@ -25,23 +25,18 @@ class EditLecture extends Component {
     axios.get(`${proxy}lectures/${this.props.match.params.id}`)
       .then(res =>
         this.setState({
-          userId: res.data.userId,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          position: res.data.position,
-          contactNo: res.data.contactNo,
-          nic: res.data.nic,
-          email: res.data.email,
-          password: res.data.password
+          lectureId: res.data.lectureId,
+          lessonName: res.data.lessonName,
+          lessonDescription: res.data.lessonDescription,
+          subjectCode: res.data.subjectCode,
+          lecturerId: res.data.lecturerId,
+          locationCode: res.data.locationCode,
+          date: res.data.date,
+          startTime: res.data.startTime,
+          endTime: res.data.endTime
         })).catch(error =>
       console.log(error)
     );
-  }
-
-  onChangeLectureId = event => {
-    this.setState({
-      lectureId: event.target.value
-    })
   }
 
   onChangeLessonName = event => {
@@ -105,7 +100,7 @@ class EditLecture extends Component {
       startTime: this.state.startTime,
       endTime: this.state.endTime
     }
-    axios.post(`${proxy}lectures`, lecture)
+    axios.put(`${proxy}lectures/${this.props.match.params.id}`, lecture)
       .then(() => {
         window.location = '/lectureList'
       }).catch(error => {
@@ -134,8 +129,7 @@ class EditLecture extends Component {
               <Form.Control placeholder='Enter Lecture ID'
                             type='text'
                             value={this.state.lectureId}
-                            onChange={this.onChangeLectureId}
-                            required/>
+                            disabled/>
             </Form.Group>
           </Form.Row>
           <Form.Row>

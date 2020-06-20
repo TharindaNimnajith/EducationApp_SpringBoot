@@ -16,11 +16,11 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void deleteUser(String userId) {
+    public void deleteUser(int userId) {
         userRepository.deleteById(userId);
     }
 
-    public User getUser(String userId) {
+    public User getUser(int userId) {
         return userRepository.findById(userId).get();
     }
 

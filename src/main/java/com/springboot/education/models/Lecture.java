@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 @Entity
 public class Lecture {
-    private String lectureId;
+    private int lectureId;
     private String lessonName;
     private String lessonDescription;
     private String subjectCode;
@@ -20,7 +20,7 @@ public class Lecture {
     private LocalTime endTime;
 
     public Lecture() {
-        lectureId = "";
+        lectureId = 0;
         lessonName = "";
         lessonDescription = "";
         subjectCode = "";
@@ -31,7 +31,7 @@ public class Lecture {
         endTime = LocalTime.now();
     }
 
-    public Lecture(String lectureId, String lessonName, String lessonDescription, String subjectCode,
+    public Lecture(int lectureId, String lessonName, String lessonDescription, String subjectCode,
                    String lecturerId, String locationCode, LocalDate date, LocalTime startTime, LocalTime endTime) {
         this.lectureId = lectureId;
         this.lessonName = lessonName;
@@ -46,11 +46,11 @@ public class Lecture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public String getLectureId() {
+    public int getLectureId() {
         return lectureId;
     }
 
-    public void setLectureId(String lectureId) {
+    public void setLectureId(int lectureId) {
         this.lectureId = lectureId;
     }
 

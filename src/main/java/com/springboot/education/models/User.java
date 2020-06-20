@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-    private String userId;
+    private int userId;
     private String firstName;
     private String lastName;
     private String position;
@@ -17,7 +17,7 @@ public class User {
     private String password;
 
     public User() {
-        userId = "";
+        userId = 0;
         firstName = "";
         lastName = "";
         position = "";
@@ -27,7 +27,7 @@ public class User {
         password = "";
     }
 
-    public User(String userId, String firstName, String lastName, String position, String contactNo,
+    public User(int userId, String firstName, String lastName, String position, String contactNo,
                 String nic, String email, String password) {
         this.userId = userId;
         this.firstName = firstName;
@@ -41,11 +41,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
