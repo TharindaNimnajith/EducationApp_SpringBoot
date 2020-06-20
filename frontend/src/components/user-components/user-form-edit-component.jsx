@@ -34,7 +34,7 @@ class EditUser extends Component {
           password: res.data.password
         })).catch(error =>
       console.log(error)
-    );
+    )
   }
 
   onChangeFirstName = event => {

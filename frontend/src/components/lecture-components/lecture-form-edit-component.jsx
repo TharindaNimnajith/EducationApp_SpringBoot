@@ -15,9 +15,9 @@ class EditLecture extends Component {
       subjectCode: '',
       lecturerId: '',
       locationCode: '',
-      date: null,
-      startTime: null,
-      endTime: null
+      date: '',
+      startTime: '',
+      endTime: ''
     }
   }
 
@@ -36,7 +36,7 @@ class EditLecture extends Component {
           endTime: res.data.endTime
         })).catch(error =>
       console.log(error)
-    );
+    )
   }
 
   onChangeLessonName = event => {

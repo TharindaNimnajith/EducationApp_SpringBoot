@@ -14,9 +14,9 @@ class LectureList extends Component {
       subjectCode: '',
       lecturerId: '',
       locationCode: '',
-      date: null,
-      startTime: null,
-      endTime: null,
+      date: '',
+      startTime: '',
+      endTime: '',
       lectures: []
     }
   }
