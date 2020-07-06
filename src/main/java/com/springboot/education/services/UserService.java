@@ -12,13 +12,13 @@ import java.util.List;
 
 @Service
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
-    private JavaMailSender javaMailSender;
+    private final UserRepository userRepository;
+    private final JavaMailSender javaMailSender;
 
     @Autowired
-    public UserService(JavaMailSender javaMailSender) {
+    public UserService(JavaMailSender javaMailSender, UserRepository userRepository) {
         this.javaMailSender = javaMailSender;
+        this.userRepository = userRepository;
     }
 
     public void addUser(User user) {
@@ -30,7 +30,9 @@ public class UserService {
     }
 
     public User getUser(int userId) {
-        return userRepository.findById(userId).get();
+        if (userRepository.findById(userId).isPresent())
+            return userRepository.findById(userId).get();
+        return null;
     }
 
     public List<User> getAllUsers() {

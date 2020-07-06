@@ -2,7 +2,6 @@ package com.springboot.education.controllers;
 
 import com.springboot.education.models.User;
 import com.springboot.education.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
@@ -13,8 +12,11 @@ import java.util.NoSuchElementException;
 
 @RestController
 public class UserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/users")
     public void addUser(@RequestBody User user) {
@@ -22,7 +24,7 @@ public class UserController {
         try {
             userService.sendMail(user);
         } catch (MailException mailException) {
-            System.err.println(mailException);
+            mailException.getStackTrace();
         }
     }
 

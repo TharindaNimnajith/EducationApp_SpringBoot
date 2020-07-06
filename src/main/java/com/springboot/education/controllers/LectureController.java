@@ -2,7 +2,6 @@ package com.springboot.education.controllers;
 
 import com.springboot.education.models.Lecture;
 import com.springboot.education.services.LectureService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +11,11 @@ import java.util.NoSuchElementException;
 
 @RestController
 public class LectureController {
-    @Autowired
-    private LectureService lectureService;
+    private final LectureService lectureService;
+
+    public LectureController(LectureService lectureService) {
+        this.lectureService = lectureService;
+    }
 
     @PostMapping("/lectures")
     public void addLecture(@RequestBody Lecture lecture) {

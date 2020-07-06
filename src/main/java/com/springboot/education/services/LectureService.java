@@ -2,15 +2,17 @@ package com.springboot.education.services;
 
 import com.springboot.education.models.Lecture;
 import com.springboot.education.repositories.LectureRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class LectureService {
-    @Autowired
-    private LectureRepository lectureRepository;
+    private final LectureRepository lectureRepository;
+
+    public LectureService(LectureRepository lectureRepository) {
+        this.lectureRepository = lectureRepository;
+    }
 
     public void addLecture(Lecture lecture) {
         lectureRepository.save(lecture);
@@ -21,7 +23,9 @@ public class LectureService {
     }
 
     public Lecture getLecture(int lectureId) {
-        return lectureRepository.findById(lectureId).get();
+        if (lectureRepository.findById(lectureId).isPresent())
+            return lectureRepository.findById(lectureId).get();
+        return null;
     }
 
     public List<Lecture> getAllLectures() {
